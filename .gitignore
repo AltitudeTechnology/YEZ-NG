@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 /static/images/delete
-/lib/initApollo.js
 
 # testing
 /coverage
