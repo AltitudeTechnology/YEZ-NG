@@ -1,19 +1,36 @@
-module.exports = {
-    webpack: (config) => {
-      if (config.resolve.alias) {
-        delete config.resolve.alias.react
-        delete config.resolve.alias['react-dom']
-      }
-      {
-        [
-          { test: /\.css$/, loader: "style-loader!css-loader" },
-        ]
-      }
-      // Fixes npm packages that depend on `fs` module
-      config.node = {
-        fs: 'empty'
-      }
+require('dotenv').config()
+const path = require('path')
+const Dotenv = require('dotenv-webpack')
 
-      return config
+const withCSS = require("@zeit/next-css");
+
+module.exports = withCSS({
+  webpack: config => {
+    config.plugins = config.plugins || []
+    config.plugins = [
+      ...config.plugins,
+      // Read the .env file
+      new Dotenv({
+        /* eslint-disable no-undef */
+        path: path.join(__dirname, '.env'),
+        systemvars: true
+      })
+    ]
+    
+    if (config.resolve.alias) {
+      delete config.resolve.alias.react;
+      delete config.resolve.alias["react-dom"];
     }
+    // {
+    //   [
+    //     { test: /\.css$/, loader: "style-loader!css-loader" },
+    //   ]
+    // }
+    // Fixes npm packages that depend on `fs` module
+    config.node = {
+      fs: "empty"
+    };
+
+    return config;
   }
+});

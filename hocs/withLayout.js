@@ -4,10 +4,10 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 // import 'isomorphic-fetch'
 
-import TopHeader from '../components/common/Header/TopHeader'
-import Nav from '../components/common/Header/Nav'
-import Footer from '../components/common/Footer/Footer'
-import Scripts from '../components/common/Scripts/Scripts'
+import TopHeader from '../components/TopHeader'
+// import Nav from '../components/common/Header/Nav'
+// import Footer from '../components/common/Footer/Footer'
+// import Scripts from '../components/common/Scripts/Scripts'
 // import BreakingNewsBar from '../components/common/BreakingNewsBar/BreakingNewsBar'
 
 
@@ -19,7 +19,8 @@ Router.onrouteChangeStart = () => NProgress.start();
 Router.onRouteChangeComplete = () => NProgress.done();
 Router.onrouteChangeError = () => NProgress.done();
 
-export default function withLayout(Child, opts={}) {
+import '../assets/main.scss'
+export default function withLayout(Child) {
   class WrappedComponent extends Component {
     static async getInitialProps(context) {
       let ChildProps = {};
@@ -57,30 +58,30 @@ export default function withLayout(Child, opts={}) {
 
             {/* <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/> */}
             {/* bootstrap 4 css  */}
-            <link rel="stylesheet" href="/static/css/bootstrap.min.css"/>
+            {/* <link rel="stylesheet" href="/static/css/bootstrap.min.css"/> */}
             {/* font-awesome css  */}
-            <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+            {/* <link rel="stylesheet" href="/static/css/font-awesome.min.css"/> */}
             {/* animate css */}
-            <link rel="stylesheet" href="/static/css/animate.css"/>
+            {/* <link rel="stylesheet" href="/static/css/animate.css"/> */}
             {/* owl carousel css */}
             {/* <link rel="stylesheet" href="/static/css/owl.carousel.min.css"/> */}
 
             {/* slicknav css */}
-            <link rel="stylesheet" href="/static/css/slicknav.min.css"/>
+            {/* <link rel="stylesheet" href="/static/css/slicknav.min.css"/> */}
             {/* main css */}
-            <link rel="stylesheet" href="/static/css/main.css"/>
+            {/* <link rel="stylesheet" href="/static/css/main.css"/> */}
             {/* responsive css */}
-            <link rel="stylesheet" href="/static/css/responsive.css"/>
-            <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' />
+            {/* <link rel="stylesheet" href="/static/css/responsive.css"/> */}
+            {/* <link rel='stylesheet' type='text/css' href='/static/css/nprogress.css' /> */}
           </Head>
             <header className="header-area">
                 {/* <!-- top header area --> */}
                 <TopHeader />
                 {/* <BreakingNewsBar articles={breakingNewsArticles}/> */}
-                <Nav/>
+                {/* <Nav/> */}
             </header>
             <Child {...this.props}/>
-            <Footer />
+            {/* <Footer /> */}
           {/* <Scripts /> */}
         </div>
       )
